@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rider_app/AllScreens/mainscreen.dart';
+import 'package:rider_app/AllScreens/loginScreen.dart';
 import 'package:rider_app/AllScreens/registrationScreen.dart';
 
 void main() {

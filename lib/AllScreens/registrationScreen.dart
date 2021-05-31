@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rider_app/AllScreens/loginScreen.dart';
 
 
 class RegistrationScreen extends StatelessWidget {
@@ -124,7 +125,7 @@ class RegistrationScreen extends StatelessWidget {
                 FlatButton(
                   onPressed: ()
                   {
-                    print("clicked");
+                    Navigator.pushAndRemoveUntil(context, LoginScreen.idScreen (route) => false)
                   },
                   child: Text(
                     "Already have an Account? Login Here.",
