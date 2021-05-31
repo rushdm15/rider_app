@@ -137,4 +137,45 @@ class RegistrationScreen extends StatelessWidget {
         )
     );
   }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  void registerNewUser(BuildContext context) async
+  {
+    final User firebaseUser = (await _firebaseAuth
+        .createUserWithEmailAndPassword(
+        email: emailTextEditingController.text,
+        password: passwordTextEditingController.text
+    ).catchError((errMsg){
+      displayToastMessage("Error: " + errMsg.toString(), context)
+    })).user;
+
+    if(firebaseUser != null) //user create
+    {
+      //save user info to database
+      usersRef.child(firebaseUser.uid);
+
+      Map userDataMap = {
+        "name": nameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(),
+        "phone": phoneTextEditingController.text.trim(),
+      };
+
+      usersRef.child(firebaseUser.uid).set(userDataMap);
+      displayToastMessage("Congratulations, your account has been created", context);
+      
+      Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
+    }
+    else
+    {
+      //error occured - display error msg
+      displayToastMessage("New user account has not been created", context);
+    }
+  }
+}
+
+
+displayToastMessage(String message, BuildContext context)
+{
+  Fluttertoast.showToast(msg: "Name must be atleast 3 character"):
 }

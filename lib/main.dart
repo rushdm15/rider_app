@@ -3,9 +3,14 @@ import 'package:rider_app/AllScreens/loginScreen.dart';
 import 'package:rider_app/AllScreens/mainScreen.dart';
 import 'package:rider_app/AllScreens/registrationScreen.dart';
 
-void main() {
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
+
+DatabaseReference usersRef = FirebaseDatabase.instance.reference().child("users");
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
