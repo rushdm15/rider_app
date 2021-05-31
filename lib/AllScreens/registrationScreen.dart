@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:rider_app/AllScreens/loginScreen.dart';
 
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatelessWidget
+{
+  static const String idScreen = "register":
+
+  TextEditingController nameTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController phoneTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +42,7 @@ class RegistrationScreen extends StatelessWidget {
 
                       SizedBox(height: 1.0,),
                       TextFormField(
+                        controller: nameTextEditingController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           labelText: "Name",
@@ -50,6 +59,7 @@ class RegistrationScreen extends StatelessWidget {
 
                       SizedBox(height: 1.0,),
                       TextFormField(
+                        controller: emailTextEditingController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           labelText: "Email",
@@ -65,7 +75,9 @@ class RegistrationScreen extends StatelessWidget {
                       ),
 
                       SizedBox(height: 1.0,),
+
                       TextFormField(
+                        controller: phoneTextEditingController,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                           labelText: "Phone",
@@ -82,6 +94,7 @@ class RegistrationScreen extends StatelessWidget {
 
                       SizedBox(height: 1.0,),
                       TextField(
+                        controller: passwordTextEditingController,
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Password",
@@ -114,7 +127,27 @@ class RegistrationScreen extends StatelessWidget {
                         ),
                         onPressed: ()
                         {
-                          print("loggedin button clicked");
+                          if(nameTextEditingController.text.length < 3)
+                          {
+                            displayToastMessage("name must be atleast 3 characters.", context);
+                          }
+                          else if(!emailTextEditingController.text.contains("@"))
+                          {
+                            displayToastMessage("Email address is not valid.", context);
+                          }
+                          else if(phoneTextEditingController.text.isEmpty)
+                          {
+                            displayToastMessage("Phone Number is mandatory.", context);
+                          }
+                          else if(passwordTextEditingController.text.length < 6)
+                          {
+                            displayToastMessage("Password must be at least 6 characters.", context);
+                          }
+                          else
+                          {
+                            registerNewUser(context);
+                          }
+
                         },
                       ),
 
