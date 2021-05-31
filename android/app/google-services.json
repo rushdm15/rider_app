@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "755812486005",
+    "project_id": "flutter-uber-clone-5a3a3",
+    "storage_bucket": "flutter-uber-clone-5a3a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755812486005:android:267cc4bb1cdaf4f1a5a13c",
+        "android_client_info": {
+          "package_name": "com.DougRush.rider_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755812486005-sc8s2lr9faln9tdqp9tt7vdeh5k748fr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8a6ujVR0cWS7Ye0DrhONt-relNscVVQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755812486005-sc8s2lr9faln9tdqp9tt7vdeh5k748fr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
