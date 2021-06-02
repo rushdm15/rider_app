@@ -106,4 +106,58 @@ class LoginScreen extends StatelessWidget
       )
     );
   }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  void loginAndAuthenticateUser(BuildContext context) async
+  {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context)
+        {
+          ProgressDialog(message: "Authenticating, Please wait...");
+        }
+    );
+
+    final User firebaseUser = (await _firebaseAuth
+        .signInWithEmailAndPassword(
+        email: emailTextEditingController.text,
+        password: passwordTextEditingController.text
+    ).catchError((errMsg){
+      Navigator.pop(context);
+      displayToastMessage("Error: " + errMsg.toString(), context)
+    })).user;
+
+    if(firebaseUser != null) //user create
+      {
+      //save user info to database
+      usersRef.child(firebaseUser.uid);
+
+      // Map userDataMap = {
+      //   "name": nameTextEditingController.text.trim(),
+      //   "email": emailTextEditingController.text.trim(),
+      //   "phone": phoneTextEditingController.text.trim(),
+      // }; unknown, not found
+
+      usersRef.child(firebaseUser.uid).once().then(DataSnapshot snap){
+        if(snap.value != null)
+          {
+            Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
+            displayToastMessage("you are logged-in now", context);
+          }
+        else
+        {
+          Navigator.pop(context);
+          _firebaseAuth.signOut();
+          displayToastMessage("No record exists for this user. Please create new account.", context);
+        }
+        ));
+      }
+      else
+      {
+        Navigator.pop(context);
+        displayToastMessage("New user account has not been created", context);
+      }
+    }
 }
+
