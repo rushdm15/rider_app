@@ -175,11 +175,21 @@ class RegistrationScreen extends StatelessWidget
 
   void registerNewUser(BuildContext context) async
   {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context)
+        {
+          return ProgressDialog(message: "Registering, Please wait...");
+        }
+    );
+
     final User firebaseUser = (await _firebaseAuth
         .createUserWithEmailAndPassword(
         email: emailTextEditingController.text,
         password: passwordTextEditingController.text
     ).catchError((errMsg){
+      Navigator.pop(context);
       displayToastMessage("Error: " + errMsg.toString(), context)
     })).user;
 
@@ -201,6 +211,7 @@ class RegistrationScreen extends StatelessWidget
     }
     else
     {
+      Navigator.pop(context);
       //error occured - display error msg
       displayToastMessage("New user account has not been created", context);
     }
