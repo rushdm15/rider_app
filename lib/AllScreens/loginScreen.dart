@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget
 {
   static const String idScreen = "login":
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,8 @@ class LoginScreen extends StatelessWidget
                   Children: [
 
                     SizedBox(height: 1.0,),
-                    TextFormField(
+                    TextField(
+                      controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -51,6 +54,7 @@ class LoginScreen extends StatelessWidget
 
                     SizedBox(height: 1.0,),
                     TextField(
+                      controller: passwordTextEditingController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -82,8 +86,19 @@ class LoginScreen extends StatelessWidget
                         borderRadius: new BorderRadius.circular(24.0),
                       ),
                       onPressed: ()
+                        if(!emailTextEditingController.text.contains("@"))
                         {
-                          print("loggedin button clicked");
+                          displayToastMessage("Email address is not valid.", context);
+                        }
+                        else if(passwordTextEditingController.text.isEmpty)
+                        {
+                          displayToastMessage("Password is mandatory", context);
+                        }
+                        else
+                        {
+                          loginAndAuthenticateUser(context);
+                        }
+
                         },
                     ),
 
