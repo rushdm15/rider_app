@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rider_app/AllScreens/registrationScreen.dart';
+import 'package:rider_app/AllWidgets/progressDialog.dart';
+
 
 class LoginScreen extends StatelessWidget
 {
