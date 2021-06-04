@@ -20,6 +20,8 @@ class _MainScreenState extends State<MainScreen>
   Completer<GoogleMapController> _controllerGoogleMap = Complete();
   GoogleMapController newGoogleMapController;
 
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
@@ -28,6 +30,7 @@ class _MainScreenState extends State<MainScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text("Main Screen"),
       ),
