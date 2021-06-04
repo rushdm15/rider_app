@@ -44,6 +44,47 @@ class _MainScreenState extends State<MainScreen>
             }
 
           )
+                    SizedBox(height: 24.0),
+                    Row(
+                      children: [
+                        Icon(Icons.home, color: Colors.grey,),
+                        SizedBox(width: 12.0,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Add Home"),
+                            SizedBox(height: 4.0),
+                            Text("Your living home address", style: Textstyle(color: Colors.black54, fontSize: 12.0),),
+                          ],
+                        )
+                      ],
+                    ),
+
+                    SizedBox(height: 10.0),
+
+                    DividerWidget(),
+
+                    SizedBox(height: 16.0),
+
+                    Row(
+                      children: [
+                        Icon(Icons.work, color: Colors.grey,),
+                        SizedBox(width: 12.0,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Add Work"),
+                            SizedBox(height: 4.0),
+                            Text("Your office address", style: Textstyle(color: Colors.black54, fontSize: 12.0),),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       )
     );
