@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:rider_app/AllWidgets/Divider.dart';
 
 
 
