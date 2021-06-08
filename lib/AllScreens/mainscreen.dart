@@ -98,14 +98,24 @@ class _MainScreenState extends State<MainScreen>
       body: Stack(
         children: [
           GoogleMap(
+            padding: EdgeInsets.only(bottom: bottomPaddingofMap),
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kGooglePlex,
+            myLocationEnabled: true,
+            zoomGesturesEnabled: true,
+            zoomControlsEnabled: true,
             onMapCreated: (GoogleMapController controller)
             {
               _controllerGoogleMap.complete(controller);
               newGoogleMapController = controller;
-            }
+              
+              setState(() {
+                bottomPaddingofMap = 300.0;
+              });
+
+              locatePosition();
+            },
           ),
 
           //HamburgerButton for Drawer
@@ -145,7 +155,7 @@ class _MainScreenState extends State<MainScreen>
             left: 0.0,
             bottom: 0.0,
             child: Container(
-              height: 320.0,
+              height: 300.0,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(18.0), topRight: Radius.circular(18.0)),
