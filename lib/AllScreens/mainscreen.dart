@@ -23,6 +23,22 @@ class _MainScreenState extends State<MainScreen>
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  Position currentPosition;
+  var geoLocator = Geolocator();
+  double bottomPaddingofMap = 0;
+
+
+  void locatePosition() async
+  {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    currentPosition = position;
+
+    LatLng latLatPosition = Latlng(position.latitude, position.longitude);
+
+    CameraPosition cameraPosition = new CameraPosition(target: latLatPosition. zoom: 14);
+    newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
+
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
