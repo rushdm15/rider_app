@@ -5,7 +5,7 @@ import 'package:rider_app/AllWidgets/progressDialog.dart';
 
 class LoginScreen extends StatelessWidget
 {
-  static const String idScreen = "login":
+  static const String idScreen = "login";
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
