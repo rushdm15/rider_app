@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Taxi Rider App',
         theme: ThemeData(
-          fontFamily: "Signatra",
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
