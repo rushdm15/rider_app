@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen>
     CameraPosition cameraPosition = new CameraPosition(target: latLatPosition. zoom: 14);
     newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    String address = await AssistantMethods.searchCoordinateAddress(position);
+    String address = await AssistantMethods.searchCoordinateAddress(position, context);
     print("This is your Address :: " + address);
   }
 
@@ -234,7 +234,11 @@ class _MainScreenState extends State<MainScreen>
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Add Work"),
+                            Text(
+                              Provider.of<AppData>(context).pickUpLocation != null
+                                ? Provider.of<AppData>(context).pickUpLocation.placeName
+                                : "Add Home", 
+                            ),
                             SizedBox(height: 4.0),
                             Text("Your office address", style: Textstyle(color: Colors.black54, fontSize: 12.0),),
                           ],
