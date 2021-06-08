@@ -18,21 +18,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Taxi Rider App',
-      theme: ThemeData(
-        fontFamily: "Signatra",
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ChangeNotifierProvider(
+      create: (context) => AppData(),
+      child: MaterialApp(
+        title: 'Taxi Rider App',
+        theme: ThemeData(
+          fontFamily: "Signatra",
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        initialRoute: MainScreen.idScreen,
+        routes:
+       {
+        RegistrationScreen.idScreen: (context) => RegistrationScreen(),
+        LoginScreen.idScreen: (context) => LoginScreen(),
+        MainScreen.idScreen: (context) => MainScreen(),
+       },
+      debugShowCheckedModeBanner: false,
       ),
-      initialRoute: MainScreen.idScreen,
-      routes:
-     {
-      RegistrationScreen.idScreen: (context) => RegistrationScreen(),
-      LoginScreen.idScreen: (context) => LoginScreen(),
-      MainScreen.idScreen: (context) => MainScreen(),
-     },
-    debugShowCheckedModeBanner: false,
     );
   }
 }
