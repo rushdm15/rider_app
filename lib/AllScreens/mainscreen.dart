@@ -37,6 +37,9 @@ class _MainScreenState extends State<MainScreen>
 
     CameraPosition cameraPosition = new CameraPosition(target: latLatPosition. zoom: 14);
     newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    String address = await AssistantMethods.searchCoordinateAddress(position);
+    print("This is your Address :: " + address);
   }
 
   static final CameraPosition _kGooglePlex = CameraPosition(
