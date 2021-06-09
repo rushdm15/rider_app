@@ -104,6 +104,10 @@ class _searchScreenState extends State<searchScreen>
                               child: Padding(
                                 padding: EdgeInsets.all(3.0),
                                 child: TextField(
+                                  onChanged: (val)
+                                  {
+                                    findPlace(val);
+                                  },
                                   controller: dropOffTextEditingController,
                                   decoration: InputDecoration(
                                     hintText: "Where to?",
@@ -115,7 +119,8 @@ class _searchScreenState extends State<searchScreen>
                                   ),
                                 ),
                               ),
-                          ))
+                          ), //Container
+                      ),
                     ],
                   ),
                 ],
@@ -126,7 +131,37 @@ class _searchScreenState extends State<searchScreen>
       ),
     );
   }
+
+  void findPlace(String placeName) async
+  {
+    if(placeName.length > 1)
+    {
+      String autoCompleteUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=input=$placeName&key=$mapKey&sessiontoken=1234567890&components=country:us";
+
+      var res = await RequestAssistant.getRequest(autoCompleteUrl);
+
+      if(res == "failed")
+        {
+          return;
+        }
+      print("Places Predictions Response :: ");
+      print(res);
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
